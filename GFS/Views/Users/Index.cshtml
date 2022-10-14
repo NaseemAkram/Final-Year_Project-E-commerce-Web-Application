@@ -1,0 +1,134 @@
+﻿@model IEnumerable<GFS.Models.DB.Cart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>User Dashboard here </h2>
+
+
+Submited
+
+<div class="row">
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header  bg-warning">
+                <h5 class="card-title mb-0">Current Cart</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model)
+                                    {
+                                        if (a.Status == "pending")
+                                        {
+                                            <tr>
+                                                <td>@a.CartId</td>
+                                                <td>@a.Amount</td>
+                                                <td> @Html.ActionLink("View Cart", "Cart", new { id = a.CartId })</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-xl-4">
+        <div class="card  m-b-30">
+            <div class="card-header bg-info">
+                <h5 class="card-title mb-0">Previous Orders</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model)
+                                    {
+                                        if (a.Status == "Submited")
+                                        {
+                                            <tr>
+                                                <td>@a.CartId</td>
+                                                <td>@a.Amount</td>
+                                                <td> @Html.ActionLink("View Cart", "Cart", new { id = a.CartId })</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header  bg-success">
+                <h5 class="card-title mb-0">Deliver Orders</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var a in Model)
+                                    {
+                                        if (a.Status == "deliver")
+                                        {
+                                            <tr>
+                                                <td>@a.CartId</td>
+                                                <td>@a.Amount</td>
+                                                <td> @Html.ActionLink("View Cart", "Cart", new { id = a.CartId })</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

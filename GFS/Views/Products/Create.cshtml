@@ -1,0 +1,120 @@
+﻿@model GFS.Models.DB.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<div class="row">
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-10">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Add New Product</h4>
+            </div>
+            <div class="card-body pb-0">
+
+
+                <form action="@Url.Action("Create", "Products")" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Product</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                    <div class="row text-black">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Upload Multiple Photo</label>
+                                <input type="file" name="File1" class="form-control" multiple />
+                            </div>
+                        </div>
+                        @*<div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Upload Product Photo</label>
+                                <input type="file" name="File2" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Upload Product Photo</label>
+                                <input type="file" name="File3" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Upload Product Photo</label>
+                                <input type="file" name="File4" class="form-control" />
+                            </div>
+                        </div>*@
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Select Product Catagory </label>
+                                @Html.DropDownList("CId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label " })
+                                <input type="text" name="Price" placeholder="Enter Price" class="form-control"  required/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Enter  Product Name </label>
+                                <input type="text" name="Name" placeholder="Enter Title" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Details, "Details", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Details, new { htmlAttributes = new { @class = "form-control", @placeholder = "Product Details" } })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Condition</label>
+                                <script>
+                                    function updateTextInput(val) {
+                                        document.getElementById('textInput').value = val;
+                                    }
+                                </script>
+                                <input type="range" name="rangeInput" min="0" max="10" value="0" onchange="updateTextInput(this.value);">
+                                <input type="number" id="textInput" name="Condition" value="0"readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Size, "Size", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", @placeholder = "Product Size" } })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label">Select Product Status</label>
+                                <select class="form-control" name="Status">
+                                    <option value="F">Feature</option>
+                                    <option value="N">New</option>
+                                    <option value="S">Sale</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-offset-2">
+                                    <br />
+                                    <input type="submit" value="Add Product" class="btn btn-block btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

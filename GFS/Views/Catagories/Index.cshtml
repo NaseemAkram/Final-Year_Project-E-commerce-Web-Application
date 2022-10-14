@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GFS.Models.DB.Catagory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Index</h2>
+<h6 class="text-danger">@TempData["ordMsg"]</h6>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+           <img src="@Url.Content("~/assets/images/"+item.Picture)" style="width:100px; height:100px" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CId })
+        </td>
+    </tr>
+}
+
+</table>

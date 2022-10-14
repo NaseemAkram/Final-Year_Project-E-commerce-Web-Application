@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+@using GFS.Models.DB
+@{
+    GFSEDB d = new GFSEDB();
+
+    var data = d.Products.ToList();
+
+
+    <section class="section feature-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+
+                @foreach (var s in data)
+                {
+                    if (s.Status == "S")
+                    {
+                        <div class="col">
+                            <div class="feature-card">
+                                <div class="feature-media">
+                                    <div class="feature-label"><label class="label-text feat bg-success">Sale</label></div>
+                                    <button class="feature-wish wish">
+                                        <i class="fas fa-heart"></i>
+                                    </button><a class="feature-image" href="product-video.html">
+                                        <img src="~/assets/images/@s.File1" alt="product">
+                                    </a>
+                                    <div class="feature-widget">
+                                        <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" onclick="return OpenUpdatePopup(@s.PId)"></a>
+                                    </div>
+                                </div>
+                                <div class="feature-content">
+                                    <h6 class="feature-name"><a href="product-video.html">@s.Name</a></h6>
+                                    <div class="feature-rating"><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a href="product-video.html">(3 Reviews)</a></div>
+                                    <h6 class="feature-price"><span>Rs. @s.Price<small> / piece</small></span></h6>
+                                    <p class="feature-desc">@s.Details</p>
+
+
+                                    <form method="post" action="@Url.Action("Order", "Shopping")">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" value="@s.PId" name="OPID" />
+                                        <input type="submit" class="btn btn-success" value="Add to Cart" title="Add to Cart" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (s.Status == "N")
+                    {
+                        <div class="col">
+                            <div class="feature-card">
+                                <div class="feature-media">
+                                    <div class="feature-label"><label class="label-text feat bg-warning">New</label></div>
+                                    <button class="feature-wish wish">
+                                        <i class="fas fa-heart"></i>
+                                    </button><a class="feature-image" href="product-video.html">
+                                        <img src="~/assets/images/@s.File1" alt="product">
+                                    </a>
+                                    <div class="feature-widget">
+                                        <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" onclick="return OpenUpdatePopup(@s.PId)"></a>
+                                    </div>
+                                </div>
+                                <div class="feature-content">
+                                    <h6 class="feature-name"><a href="product-video.html">@s.Name</a></h6>
+                                    <div class="feature-rating"><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a href="product-video.html">(3 Reviews)</a></div>
+                                    <h6 class="feature-price"><span>Rs. @s.Price<small> / piece</small></span></h6>
+                                    <p class="feature-desc">@s.Details</p>
+
+
+                                    <form method="post" action="@Url.Action("Order", "Shopping")">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" value="@s.PId" name="OPID" />
+                                        <input type="submit" class="btn btn-success" value="Add to Cart" title="Add to Cart" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (s.Status == "F")
+                    {
+                        <div class="col">
+                            <div class="feature-card">
+                                <div class="feature-media">
+                                    <div class="feature-label"><label class="label-text feat bg-primary">feature</label></div>
+                                    <button class="feature-wish wish">
+                                        <i class="fas fa-heart"></i>
+                                    </button><a class="feature-image" href="product-video.html">
+                                        <img src="~/assets/images/@s.File1" alt="product">
+                                    </a>
+                                    <div class="feature-widget">
+                                        <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" onclick="return OpenUpdatePopup(@s.PId)"></a>
+                                    </div>
+                                </div>
+                                <div class="feature-content">
+                                    <h6 class="feature-name"><a href="product-video.html">@s.Name</a></h6>
+                                    <div class="feature-rating"><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a href="product-video.html">(3 Reviews)</a></div>
+                                    <h6 class="feature-price"><span>Rs. @s.Price<small> / piece</small></span></h6>
+                                    <p class="feature-desc">@s.Details</p>
+
+
+                                    <form method="post" action="@Url.Action("Order", "Shopping")">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" value="@s.PId" name="OPID" />
+                                        <input type="submit" class="btn btn-success" value="Add to Cart" title="Add to Cart" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+}
+
+
+
+
+<div id="divcontent">
+
+</div>
+<script>
+    function OpenUpdatePopup(Id) {
+        $.ajax({
+            url: '/Home/list?id=' + Id,
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+
+                $('#divcontent').empty();
+                $('#divcontent').html(result);
+                $('#product-view').modal('show');
+                //$('#btndivuserguidemodel').trigger('click');
+            },
+            error: function (xhr, status) {
+                alert(status);
+            }
+        })
+    }
+</script>
+
+

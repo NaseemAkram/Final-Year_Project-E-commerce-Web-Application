@@ -1,0 +1,440 @@
+﻿@model IEnumerable<GFS.Models.DB.Catagory>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+
+
+
+<section class="home-index-slider slider-arrow slider-dots">
+    <div class="banner-part banner-1">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-6">
+                    <div class="banner-content">
+                        <h1>Green Fashion Store </h1>
+                        <p>Our Application’s helps Customer to get branded and imported second hand goods just with one click without going to Lunda bazar.</p>
+                        <div class="banner-btn"><a class="btn btn-inline" href="@Url.Action("Shop","Home")"><i class="fas fa-shopping-basket"></i><span>shop now</span></a><a class="btn btn-outline" href="#"><i class="icofont-sale-discount"></i><span>get offer</span></a></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="banner-img"><img src="~/Content/images/home/index/03.png" alt="index"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-part banner-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-6">
+                    <div class="banner-img"><img src="~/Content/images/home/index/home banner.png" alt="index"></div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="banner-content">
+                        <h1>Green Fashion Store</h1>
+                        <p>Online E-Commerce Platform from there everyone get Second Hand branded goods with low cost.</p>
+                        <div class="banner-btn"><a class="btn btn-inline" href="@Url.Action("Shop","Home")"><i class="fas fa-shopping-basket"></i><span>shop now</span></a><a class="btn btn-outline" href="#"><i class="icofont-sale-discount"></i><span>get offer</span></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section suggest-part">
+    <div class="container">
+        <ul class="suggest-slider slider-arrow">
+
+            @foreach (var a in Model)
+            {
+                <li>
+                    <a class="suggest-card" href="shop-4column.html">
+                        <img src="~/assets/images/@a.Picture" style="height:250px; width:200px" alt="suggest">
+                        <h5>@a.Title </h5>
+                    </a>
+                </li>
+
+            }
+
+
+
+
+        </ul>
+    </div>
+</section>
+
+
+
+@using GFS.Models.DB
+@{
+    GFSEDB d = new GFSEDB();
+
+    var data = d.Products.ToList();
+
+
+
+    <section class="section recent-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Sale items</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                @foreach (var s in data)
+                {
+                    if (s != null)
+                    {
+                        if (s.Status == "S")
+                        {
+                            <div class="col">
+                                <div class="product-card">
+                                    <div class="product-media">
+                                        <div class="product-label"><label class="label-text sale">* sale</label></div>
+                                        <button class="product-wish wish">
+                                            <i class="fas fa-heart"></i>
+                                        </button><a class="product-image" href="#"><img src="~/assets/images/@s.File1" alt="product"></a>
+                                        <div class="product-widget">
+                                            <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" onclick="return OpenUpdatePopup(@s.PId)"></a>
+                                            @*<a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>*@
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="product-rating"><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a href="product-video.html">(3)</a></div>
+                                        <h6 class="product-name"><a href="product-video.html">@s.Name</a></h6>
+                                        <h6 class="product-price"><span>Rs. @s.Price<small> / piece</small></span></h6>
+                                        <form method="post" action="@Url.Action("Order", "Shopping")">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" value="@s.PId" name="OPID" />
+                                            <input type="submit" class="btn btn-success" value="Add to Cart" title="Add to Cart" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                }
+
+
+            </div>
+
+        </div>
+    </section>
+    <div class="section promo-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="promo-img"><a href="#"><img src="~/Content/images/promo/home/03.jpg" alt="promo"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section feature-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>our featured items</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+
+                @foreach (var s in data)
+                {
+                    if (s != null)
+                    {
+                        if (s.Status == "F")
+                        {
+                            <div class="col">
+                                <div class="feature-card">
+                                    <div class="feature-media">
+                                        <div class="feature-label"><label class="label-text feat">feature</label></div>
+                                        <button class="feature-wish wish"><i class="fas fa-heart"></i>
+                                            </button><a class="feature-image" href="product-video.html">
+                                        <img src="~/assets/images/@s.File1" alt="product"></a>
+                                        <div class="feature-widget">
+                                        <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal"  onclick="return OpenUpdatePopup(@s.PId)"></a></div>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h6 class="feature-name"><a href="product-video.html">@s.Name</a></h6>
+                                        <div class="feature-rating"><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a href="product-video.html">(3 Reviews)</a></div>
+                                        <h6 class="feature-price"><span>Rs. @s.Price<small> / piece</small></span></h6>
+                                        <p class="feature-desc">@s.Details</p>
+                                        <form method="post" action="@Url.Action("Order", "Shopping")">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" value="@s.PId" name="OPID" />
+                                            <input type="submit" class="btn btn-success" value="Add to Cart" title="Add to Cart" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        }
+                    }
+
+                }
+
+            </div>
+
+        </div>
+    </section>
+    <section class="section newitem-part">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section-heading">
+                        <h2>collected new items</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="new-slider slider-arrow">
+
+                        @foreach (var s in data)
+                        {
+                            if (s != null)
+                            {
+                                if (s.Status == "N")
+                                {
+                                    <li>
+                                        <div class="product-card">
+                                            <div class="product-media">
+                                                <div class="product-label"><label class="label-text new">new</label></div>
+                                                <button class="product-wish wish"><i class="fas fa-heart"></i></button><a class="product-image" href="product-video.html"><img src="~/assets/images/@s.File1" alt="product"></a>
+                                                <div class="product-widget">
+
+                                                <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" onclick="return OpenUpdatePopup(@s.PId)"></a></div>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="product-rating"><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a href="product-video.html">(3)</a></div>
+                                                <h6 class="product-name"><a href="product-video.html">@s.Name</a></h6>
+                                                <h6 class="product-price"><span>Rs. @s.Price <small> / piece</small></span></h6>
+                                                <form method="post" action="@Url.Action("Order", "Shopping")">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" value="@s.PId" name="OPID" />
+                                                    <input type="submit" class="btn btn-success" value="Add to Cart" title="Add to Cart" />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                }
+                            }
+
+                        }
+
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="section-btn-25"><a href="shop-4column.html" class="btn btn-outline"><i class="fas fa-eye"></i><span>show more</span></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <div class="section promo-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 px-xl-3">
+                    <div class="promo-img"><a href="#"><img src="~/Content/images/promo/home/7777.jpg" alt="promo"></a></div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 px-xl-3">
+                    <div class="promo-img"><a href="#"><img src="~/Content/images/promo/home/shirts.jpg" alt="promo"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="section testimonial-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h2>client's feedback</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="testimonial-slider slider-arrow">
+                        <div class="testimonial-card">
+                            <i class="fas fa-quote-left"></i>
+                            <p>BS Computer Engineering Fall 2018.</p>
+                            <h5>Muhammad Naseem Akram</h5>
+                            <ul>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                            </ul>
+                            <img src="~/Content/images/avatar/naseem.jpeg" alt="testimonial">
+                        </div>
+                        <div class="testimonial-card">
+                            <i class="fas fa-quote-left"></i>
+                            <p>BS Computer Engineering Fall 2018.</p>
+                            <h5>Ahmed</h5>
+                            <ul>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                            </ul>
+                            <img src="~/Content/images/avatar/01.jpg" alt="testimonial">
+                        </div>
+                        <div class="testimonial-card">
+                            <i class="fas fa-quote-left"></i>
+                            <p>Lorem ipsum dolor consectetur adipisicing elit neque earum sapiente vitae obcaecati magnam doloribus magni provident ipsam</p>
+                            <h5>mahmud hasan</h5>
+                            <ul>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                            </ul>
+                            <img src="~/Content/images/avatar/03.jpg" alt="testimonial">
+                        </div>
+                        <div class="testimonial-card">
+                            <i class="fas fa-quote-left"></i>
+                            <p>Lorem ipsum dolor consectetur adipisicing elit neque earum sapiente vitae obcaecati magnam doloribus magni provident ipsam</p>
+                            <h5>mahmud hasan</h5>
+                            <ul>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                            </ul>
+                            <img src="~/Content/images/avatar/04.jpg" alt="testimonial">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section blog-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h2>Read our articles</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blog-slider slider-arrow">
+                        <div class="blog-card">
+                            <div class="blog-media"><a class="blog-img" href="#"><img src="~/Content/images/blog/01.jpg" alt="blog"></a></div>
+                            <div class="blog-content">
+                                <ul class="blog-meta">
+                                    <li><i class="fas fa-user"></i><span>admin</span></li>
+                                    <li><i class="fas fa-calendar-alt"></i><span>february 02, 2022</span></li>
+                                </ul>
+                                <h4 class="blog-title"><a href="blog-details.html">1.	Online E-Commerce Platform from there everyone get Second Hand branded goods with low cost.</a></h4>
+                                <p class="blog-desc">The fashion industry is expanding at a faster pace than ever attracting more and more people towards new fashions. And new terminologies have been introduced in industries. 
+                                One of them is Fast fashion makes shopping for clothes more affordable, but it comes at an environmental cost. </p>
+                                <a class="blog-btn" href="#"><span>read more</span><i class="icofont-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-media"><a class="blog-img" href="#"><img src="~/Content/images/blog/02.jpg" alt="blog"></a></div>
+                            <div class="blog-content">
+                                <ul class="blog-meta">
+                                    <li><i class="fas fa-user"></i><span>admin</span></li>
+                                    <li><i class="fas fa-calendar-alt"></i><span>february 02, 2022</span></li>
+                                </ul>
+                                <h4 class="blog-title"><a href="blog-details.html">Our Application’s helps Customer to get branded and imported second
+                                    hand goods just with one click without going to Lunda bazar.</a></h4>
+                                <p class="blog-desc">The fashion industry is the second largest polluter in the world just after the oil industry. 
+                                The waste comes from these industries were dumped directly into the rivers. Which is extremely harmful to the 
+                                aquatic life and ....  </p>
+                                <a class="blog-btn" href="#"><span>read more</span><i class="icofont-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-media"><a class="blog-img" href="#"><img src="~/Content/images/blog/03.jpg" alt="blog"></a></div>
+                            <div class="blog-content">
+                                <ul class="blog-meta">
+                                    <li><i class="fas fa-user"></i><span>admin</span></li>
+                                    <li><i class="fas fa-calendar-alt"></i><span>february 02, 2022</span></li>
+                                </ul>
+                                <h4 class="blog-title"><a href="blog-details.html">Our applications will play an important role for the Society.</a></h4>
+                                <p class="blog-desc">
+                                    What’s more, 85% of all textiles go to the dump each year.
+                                    The fashion industry produces 10% of all humanity’s carbon emissions and 
+                                    is the second-largest consumer of the world’s water
+                                    keeping in view all these problems and their impacts on our environment let us introduce a web-based platform
+                                    where customers..
+                                </p>
+                                <a class="blog-btn" href="#"><span>read more</span><i class="icofont-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-card">
+                            <div class="blog-media"><a class="blog-img" href="#"><img src="~/Content/images/blog/04.jpg" alt="blog"></a></div>
+                            <div class="blog-content">
+                                <ul class="blog-meta">
+                                    <li><i class="fas fa-user"></i><span>admin</span></li>
+                                    <li><i class="fas fa-calendar-alt"></i><span>february 02, 2022</span></li>
+                                </ul>
+                                <h4 class="blog-title"><a href="blog-details.html">Generally we are shifting Landa bazar to a E-commerce Platform </a></h4>
+                                <p class="blog-desc">Fashion has such a significant impact on communities around the world. Fashion plays a major role 
+                                in the global economy with annual revenues totaling over £1 trillion. But it has also have the Dark side.. </p>
+                                <a class="blog-btn" href="#"><span>read more</span><i class="icofont-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-btn-25"><a href="blog-grid.html" class="btn btn-outline"><i class="fas fa-eye"></i><span>view all blog</span></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+}
+<div id="divcontent">
+
+</div>
+    <script>
+        function OpenUpdatePopup(Id) {
+            $.ajax({
+                url: '/Home/list?id=' + Id,
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+
+                    $('#divcontent').empty();
+                    $('#divcontent').html(result);
+                    $('#product-view').modal('show');
+                    //$('#btndivuserguidemodel').trigger('click');
+                },
+                error: function (xhr, status) {
+                    alert(status);
+                }
+            })
+        }
+    </script>
+
+

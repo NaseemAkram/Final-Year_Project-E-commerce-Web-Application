@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GFS.Models.DB.CartDetail>
+
+@{
+    ViewBag.Title = "CartDetails";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PId)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Cart.ShippingAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PId)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Cart.ShippingAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+           
+        </tr>
+    }
+
+
+    
+
+</table>
+
+
+<p>
+    <b>Customer Address</b>
+    <br />
+    @Model.FirstOrDefault().Cart.ShippingAddress
+</p>
+<form method="post" action="@Url.Action("ChangeStatus", "Order")">
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@TempData["OId"]" name="OId" />
+    <input type="hidden" value="deliver" name="OStatus" />
+    <input type="submit" class="btn btn-success" value="Deliver to The Customer " title="Deliver to The Customer " />
+</form>

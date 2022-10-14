@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Minaati is a bootstrap minimal & clean admin template">
+    <meta name="keywords" content="admin, admin panel, admin template, admin dashboard, admin theme, bootstrap 4, responsive, sass support, ui kits, crm, ecommerce">
+    <meta name="author" content="Themesbox17">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>GFS Admin</title>
+    <!-- Fevicon -->
+    <link rel="shortcut icon" href="~/logo.ico" />
+    <!-- Start css -->
+    <!-- Switchery css -->
+    <link href="~/assets/plugins/switchery/switchery.min.css" rel="stylesheet">
+    <!-- Apex css -->
+    <link href="~/assets/plugins/apexcharts/apexcharts.css" rel="stylesheet">
+    <!-- DataTables css -->
+    <link href="~/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive Datatable css -->
+    <link href="!/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Slick css -->
+    <link href="~/assets/plugins/slick/slick.css" rel="stylesheet">
+    <link href="~/assets/plugins/slick/slick-theme.css" rel="stylesheet">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css">
+    <!-- End css -->
+</head>
+<body class="vertical-layout">
+    <!-- Start Infobar Setting Sidebar -->
+    <div id="infobar-settings-sidebar" class="infobar-settings-sidebar">
+
+    </div>
+    <div class="infobar-settings-sidebar-overlay"></div>
+    <!-- End Infobar Setting Sidebar -->
+    <!-- Start Containerbar -->
+    <div id="containerbar">
+        <!-- Start Leftbar -->
+        <div class="leftbar">
+            <!-- Start Sidebar -->
+            <div class="sidebar">
+                <!-- Start Logobar -->
+                <div class="logobar">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Index","Admin")" class="logo logo-large"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                            <a href="@Url.Action("Index","Admin")" class="logo logo-small"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                        }
+                        else if (User.IsInRole("Vendor"))
+                        {
+                            <a href="@Url.Action("Index","Vendor")" class="logo logo-large"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                            <a href="@Url.Action("Index","Vendor")" class="logo logo-small"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                        }
+                        else if (User.IsInRole("User"))
+                        {
+                            <a href="@Url.Action("Index","User")" class="logo logo-large"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                            <a href="@Url.Action("Index","User")" class="logo logo-small"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                        }
+                    }
+
+
+                </div>
+                <!-- End Logobar -->
+                <!-- Start Navigationbar -->
+                <div class="navigationbar">
+                    <ul class="vertical-menu">
+                        <li>
+                            <a href="@Url.Action("Index","Home")">
+                                <i class="ri-home-smile-2-fill"></i><span>Home</span>
+                            </a>
+                        </li>
+                        @if (@User.IsInRole("Vendor"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Vendor")">
+                                    <i class="ri-apps-line"></i><span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Products")">
+                                    <i class="ri-apps-line"></i><span>Products</span>
+                                </a>
+                            </li>
+                        }
+
+
+
+
+                        @if (@User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index","Products")">
+                                    <i class="ri-apps-line"></i><span>Products</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Catagories")">
+                                    <i class="ri-file-copy-2-line"></i><span>Categories</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Order")">
+                                    <i class="ri-pie-chart-line"></i><span>Orders</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Vendor","Admin")">
+                                    <i class="ri-store-2-fill"></i><span>Vendors</span>
+                                </a>
+                            </li>
+                            <li>
+                                
+                                <a href="@Url.Action("Users","Admin")">
+                                    <i class="ri-pencil-ruler-2-line"></i><span>Users</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","GenralSettings")">
+                                    <i class="ri-settings-2-fill"></i><span>GenralSettings</span>
+                                </a>
+                            </li>
+                            <li>
+                                
+                                <a href="@Url.Action("Index","FAQs")">
+                                    <i class="ri-apps-line"></i><span>FAQs</span>
+                                </a>
+                            </li>
+                            <li class="vertical-header"></li>
+
+
+
+                            <li>
+                                <a href="javaScript:void();">
+                                    <i class="ri-service-line"></i><span>Accounts</span><i class="ri-arrow-right-s-line"></i>
+                                </a>
+                                <ul class="vertical-submenu">
+                                    <li><a href="@Url.Action("Add","Admin")">Add New User</a></li>
+
+                                </ul>
+                            </li>
+                        }
+
+
+
+
+
+
+                        <li class="vertical-header"></li>
+                        <li>
+                            <a href="@Url.Action("LogOut","Accounts")">
+                                <i class="ri-logout-box-line text-danger"></i><span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Navigationbar -->
+            </div>
+            <!-- End Sidebar -->
+        </div>
+        <!-- End Leftbar -->
+        <!-- Start Rightbar -->
+        <div class="rightbar">
+            <!-- Start Topbar Mobile -->
+            <div class="topbar-mobile">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="mobile-logobar">
+                            <a href="@Url.Action("Index","Admin")" class="mobile-logo"><img src="~/Content/images/logo.png" class="img-fluid" alt="logo"></a>
+                        </div>
+                        <div class="mobile-togglebar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="topbar-toggle-icon">
+                                        <a class="topbar-toggle-hamburger" href="javascript:void();">
+                                            <i class="ri-more-fill menu-hamburger-horizontal"></i>
+                                            <i class="ri-more-2-fill menu-hamburger-vertical"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="menubar">
+                                        <a class="menu-hamburger" href="javascript:void();">
+                                            <i class="ri-menu-2-line menu-hamburger-collapse"></i>
+                                            <i class="ri-close-line menu-hamburger-close"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Start Topbar -->
+            <div class="topbar">
+                <!-- Start row -->
+                <div class="row align-items-center">
+                    <!-- Start col -->
+                    <div class="col-md-12 align-self-center">
+                        <div class="togglebar">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item">
+                                    <div class="menubar">
+                                        <a class="menu-hamburger" href="javascript:void();">
+                                            <i class="ri-menu-2-line menu-hamburger-collapse"></i>
+                                            <i class="ri-close-line menu-hamburger-close"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="list-inline-item">
+                                    <div class="searchbar">
+                                        <form>
+                                            <div class="input-group">
+                                                <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn" type="submit" id="button-addon2"><i class="ri-search-2-line"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="infobar">
+                            <ul class="list-inline mb-0">
+
+                                <li class="list-inline-item">
+                                    <div class="profilebar">
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/assets/images/users/profile.svg" class="img-fluid" alt="profile">
+
+
+                                                @if (@User.IsInRole("Admin"))
+                                                {
+                                                    <span class="live-icon">
+                                                        Admin
+                                                    </span>
+                                                }
+                                                else if (@User.IsInRole("Vendor"))
+                                                {
+                                                    <span class="live-icon">
+                                                        Vendor
+                                                    </span>
+                                                }
+                                                else if (@User.IsInRole("User"))
+                                                {
+                                                    <span class="live-icon">
+                                                        User
+                                                    </span>
+                                                }
+
+
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
+                                                <a class="dropdown-item" href="#"><i class="ri-user-6-line"></i>@User.Identity.Name</a>
+                                                <a class="dropdown-item text-danger" href="@Url.Action("LogOut","Accounts")"><i class="ri-shut-down-line"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End row -->
+            </div>
+            <!-- End Topbar -->
+            <!-- Start Breadcrumbbar -->
+            <div class="breadcrumbbar">
+                <div class="row align-items-center">
+                    <div class="col-md-8 col-lg-8">
+                        <div class="media">
+                            <span class="breadcrumb-icon"><i class="ri-user-6-fill"></i></span>
+                            <div class="media-body">
+                                <h4 class="page-title">CRM</h4>
+                                <div class="breadcrumb-list">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">CRM</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- End Breadcrumbbar -->
+            <!-- Start Contentbar -->
+            <div class="contentbar">
+                @RenderBody()
+
+            </div>
+            <!-- End Contentbar -->
+            <!-- Start Footerbar -->
+            <div class="footerbar">
+                <footer class="footer">
+                    <p class="mb-0">© 2020 Green Fassion Store - All Rights Reserved.</p>
+                </footer>
+            </div>
+            <!-- End Footerbar -->
+        </div>
+        <!-- End Rightbar -->
+    </div>
+    <!-- End Containerbar -->
+    <!-- Start js -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/modernizr.min.js"></script>
+    <script src="~/assets/js/detect.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+    <script src="~/assets/js/vertical-menu.js"></script>
+    <!-- Switchery js -->
+    <script src="~/assets/plugins/switchery/switchery.min.js"></script>
+    <!-- Apex js -->
+    <script src="~/assets/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="~/assets/plugins/apexcharts/irregular-data-series.js"></script>
+    <!-- Slick js -->
+    <script src="~/assets/plugins/slick/slick.min.js"></script>
+    <!-- Custom Dashboard js -->
+    <script src="~/assets/js/custom/custom-dashboard.js"></script>
+
+    <script src="~/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables/jszip.min.js"></script>
+    <script src="~/assets/plugins/datatables/pdfmake.min.js"></script>
+    <script src="~/assets/plugins/datatables/vfs_fonts.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.print.min.js"></script>
+    <script src="~/assets/plugins/datatables/buttons.colVis.min.js"></script>
+    <script src="~/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+    <script src="~/assets/js/custom/custom-table-datatable.js"></script>
+    <!-- Core js -->
+    <script src="~/assets/js/core.js"></script>
+    <!-- End js -->
+</body>
+
+<!-- Mirrored from themesbox.in/admin-templates/minaati/html/semi-dark-vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Mar 2022 11:13:42 GMT -->
+</html>

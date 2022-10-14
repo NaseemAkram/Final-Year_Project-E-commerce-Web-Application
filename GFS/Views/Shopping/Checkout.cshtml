@@ -1,0 +1,100 @@
+﻿@model GFS.Models.DB.Cart
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<div class="card m-b-30">
+    <div class="card-header">
+        <h5 class="card-title">Order Items</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive ">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var sno = 0;
+                        foreach (var b in Model.CartDetails)
+                        {
+                            sno +=1;
+                            <tr>
+                                <th scope="row">@sno</th>
+                                <td><img src="@Url.Content("~/assets/images/"+b.Product.File1)" class="img-fluid" width="35" alt="product"></td>
+                                <td>@b.Product.Name</td>
+                                <td>Rs. @b.Product.Price</td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row border-top pt-3">
+            <div class="col-md-12 order-2 order-lg-1 col-lg-4 col-xl-6">
+                <div class="order-note">
+                    <p class="mb-5"><span class="badge badge-secondary-inverse">Free Shipping Order</span></p>
+                    <h6>Note :</h6>
+                    <p>Please, Pack with product air bag and handle with care.</p>
+                </div>
+            </div>
+            <div class="col-md-12 order-1 order-lg-2 col-lg-8 col-xl-6">
+                <div class="order-total table-responsive ">
+                    <table class="table table-borderless text-right">
+                        <tbody>
+                            <tr>
+                                <td>Sub Total :</td>
+                                <td>Rs. @Model.Amount</td>
+                            </tr>
+                            <tr>
+                                <td>Shipping :</td>
+                                <td>Rs. 0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Tax(00%) :</td>
+                                <td>Rs. 00.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-black f-w-7 font-18">Amount :</td>
+                                <td class="text-black f-w-7 font-18">Rs. @Model.Amount</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-right">
+        <form method="post">
+            <input type="hidden" value="@Model.CartId" name="id" />
+            @Html.HiddenFor(x => x.CartId)
+            @Html.HiddenFor(x => x.UserId)
+            @Html.HiddenFor(x => x.Status)
+            @Html.HiddenFor(x => x.PaymentStatus)
+            @Html.HiddenFor(x => x.Date)
+            @Html.HiddenFor(x => x.Amount)
+
+            <div class="row">
+                <div class="col-md-3">
+                    <textarea type="text" name="ShippingAddress" class="form-control" placeholder="Enter Shipping Address" required>@Model.Account.Address   Phone @Model.Account.Phone</textarea>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" value="@Model.Account.Phone" name="Phone" class="form-control" placeholder="Contact Number" required />
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" class="btn btn-success-rgba my-1 ri-shopping-cart-2-fill mr-2" value="Check Out" />
+                    <button type="button" class="btn btn-danger-rgba my-1"><i class="ri-delete-bin-3-line mr-2"></i>Cancel</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

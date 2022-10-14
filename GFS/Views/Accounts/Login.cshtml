@@ -1,0 +1,61 @@
+﻿@model GFS.Models.DB.Account
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<!-- Start Auth Box -->
+<div class="auth-box-right">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.UserId)
+
+
+
+
+
+            <div class="form-head">
+                <a href="@Url.Action("Index","Home")" class="logo"><img src="~/Content/images/logo1.png" class="img-fluid" alt="logo"></a>
+            </div>
+                <h4 class="text-primary my-4">Log in !</h4>
+                <label class="text-success">@TempData["msg"]</label>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password"  })
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col-sm-6">
+                        <div class="custom-control custom-checkbox text-left">
+                            <input type="checkbox" class="custom-control-input" id="rememberme">
+                            <label class="custom-control-label font-14" for="rememberme">Remember Me</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="forgot-psw">
+                            <a id="forgot-psw" href="@Url.Action("Forgot","Accounts")" class="font-14">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Sign In" class="btn btn-success btn-lg btn-block font-18" />
+                @*<a href="@Url.Action("Index", "Admin")" class="btn btn-success btn-lg btn-block font-18">Log in</a>*@
+                @*<button type="submit" class="btn btn-success btn-lg btn-block font-18">Log in</button>*@
+
+
+            }
+            <div class="login-or">
+                <h6 class="text-muted">OR</h6>
+            </div>
+
+            <p class="mb-0 mt-3">Don't have a account? <a href="@Url.Action("Register","Accounts")">Sign up</a></p>
+            <hr />
+            <p class="mb-0 mt-3"><a href="@Url.Action("Index","Home")">Buy Now</a></p>
+        </div>
+    </div>
+</div>
+<!-- End Auth Box -->

@@ -1,0 +1,83 @@
+﻿@model GFS.Models.DB.GenralSetting
+@{
+    ViewBag.Title = "Contact";
+}
+
+    <section class="inner-section single-banner" style="background: url(Content/images/single-banner.jpg) no-repeat center;">
+        <div class="container">
+            <h2>contact us</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home / Contact</a></li>
+            </ol>
+        </div>
+    </section>
+    <section class="inner-section contact-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact-card">
+                        <i class="icofont-location-pin"></i>
+                        <h4>head office</h4>
+                        <p>@Model.Address</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact-card active">
+                        <i class="icofont-phone"></i>
+                        <h4>phone number</h4>
+                        <p>@Model.ContactNo </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="contact-card">
+                        <i class="icofont-email"></i>
+                        <h4>Support mail</h4>
+                        <p><a href="#">@Model.Email</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220735.8700747181!2d66.87826254994694!3d30.180051966739867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ed2de34ca7faae9%3A0x4696d44c4b6ff197!2sQuetta%2C%20Balochistan%2C%20Pakistan!5e0!3m2!1sen!2sqa!4v1646456179512!5m2!1sen!2sqa"  style="border:0; width:100%" height="300px" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="branch-card">
+                        <img src="~/Content/images/branch/01.jpg" alt="branch">
+                        <div class="branch-overlay">
+                            <h3>Quetta</h3>
+                            <p>Jenah Raoad Street no 34 Building Number 345 Quetta.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="branch-card">
+                        <img src="~/Content/images/branch/02.jpg" alt="branch">
+                        <div class="branch-overlay">
+                            <h3>Zoab</h3>
+                            <p>West bypass Road Zoad Balochistan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="branch-card">
+                        <img src="~/Content/images/branch/03.jpg" alt="branch">
+                        <div class="branch-overlay">
+                            <h3>Kabal Afghanistan</h3>
+                            <p>Oppost to Taleban Head Office Abdali Road Kabal </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="branch-card">
+                        <img src="~/Content/images/branch/04.jpg" alt="branch">
+                        <div class="branch-overlay">
+                            <h3>Peshawar</h3>
+                            <p>Opposit to Bibi Sherena Plaza Airport Road Peshaware City.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

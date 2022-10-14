@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="04463e7e55a8497baabc4db8aeb27d6c" Name="Diagram1">
+        <EntityTypeShape EntityType="GFSModel.Account" Width="1.5" PointX="9.375" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="GFSModel.Cart" Width="1.5" PointX="12.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GFSModel.CartDetail" Width="1.5" PointX="10.125" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="GFSModel.Catagory" Width="1.5" PointX="5.125" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GFSModel.FAQ" Width="1.5" PointX="4.625" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GFSModel.GenralSetting" Width="1.5" PointX="6.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GFSModel.Product" Width="1.5" PointX="7.625" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="GFSModel.FK_Cart_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="GFSModel.FK_Product_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="GFSModel.FK_CartDetails_Cart" ManuallyRouted="false" />
+        <AssociationConnector Association="GFSModel.FK_CartDetails_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="GFSModel.FK_Product_Catagory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

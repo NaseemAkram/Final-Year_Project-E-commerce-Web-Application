@@ -1,0 +1,115 @@
+﻿@model GFS.Models.DB.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Condition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.File1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.File1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.File2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.File2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.File3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.File3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.File4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.File4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

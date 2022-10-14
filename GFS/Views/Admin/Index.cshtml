@@ -1,0 +1,154 @@
+﻿@model IEnumerable<GFS.Models.DB.Account>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!-- Start row -->
+<div class="row">
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Total Products</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h4>@TempData["TotalProduct"]</h4>
+
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="mb-0"><i class="ri-product-hunt-line text-success align-middle font-18 mr-1" ></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End col -->
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Total Categories</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h4>@TempData["TotalCatagory"]</h4>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="mb-0"><i class="ri-upload-fill text-danger align-middle font-18 mr-1"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End col -->
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Total Orders</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h4> @TempData["TotalOrders"]</h4>
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="mb-0"><i class="ri-signal-tower-fill text-success align-middle font-18 mr-1"></i></p>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- End col -->
+</div>
+<!-- End row -->
+<!-- Start row -->
+<div class="row">
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-6">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-6 col-lg-9">
+                        <h5 class="card-title mb-0">Latest Vendors</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Full Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var data in Model.Where(x => x.Role == "Vendor"))
+                            {
+                                <tr>
+                                    <th scope="row">@data.UserId</th>
+                                    <td>@data.FullName</td>
+                                    <td>@data.Email</td>
+                                    <td>@data.Phone</td>
+                                    <td><span class="badge badge-success">@data.Status </span></td>
+                                </tr>
+                            }
+                            
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End col -->
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-3">
+        <div class="card m-b-30">
+            <div class="card-header text-center">
+                <h5 class="card-title mb-0">Authorized Admins</h5>
+            </div>
+            <div class="card-body">
+                <div class="user-slider">
+                    @foreach (var data in Model.Where(x => x.Role == "Admin"))
+                    {
+                        <div class="user-slider-item">
+                            <div class="card-body text-center">
+                                <span class="action-icon badge badge-primary-inverse">@data.Role</span>
+                                <h5>@data.FullName</h5>
+                                <p>@data.Email</p>
+                                <p class="mt-3 mb-0"><span class="badge badge-primary font-weight-normal font-14 py-1 px-2">@data.Phone</span></p>
+                            </div>
+                        </div>
+                    }
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End col -->
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-3">
+        <div class="card bg-secondary-rgba text-center m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Achievements</h5>
+            </div>
+            <div class="card-body">
+                <img src="~/assets/images/general/winner.svg" class="img-fluid img-winner" alt="achievements">
+                <h5 class="my-0">More then @TempData["TotalOrders"] Orders Done  . With Net Amount of Rs <b class="text-success">@TempData["TotalSale"]</b></h5>
+            </div>
+        </div>
+    </div>
+    <!-- End col -->
+</div>
+<!-- End row -->

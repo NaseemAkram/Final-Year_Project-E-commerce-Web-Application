@@ -1,0 +1,32 @@
+﻿@model IEnumerable<GFS.Models.DB.FAQ>
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="inner-section single-banner" style="background: url(~/content/images/single-banner.jpg) no-repeat center;">
+    <div class="container">
+        <h2>Frequent Ask Questions</h2>
+        
+    </div>
+</section>
+
+<section class="intro-part">
+    <div class="container">
+        <div class="row intro-content">
+            @foreach (var a in Model)
+            {
+                <div class="col-sm-12 col-lg-12">
+                    <div class="intro-wrap">
+                        <div class="intro-icon"><i class="fas fa-question"></i></div>
+                        <div class="intro-content">
+                            <h5>@a.Question</h5>
+                            <p>@a.Ans.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<hr />

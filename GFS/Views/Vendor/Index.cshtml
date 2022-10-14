@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="row">
+    <!-- Start col -->
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Total Products</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h4>@TempData["TotalProduct"]</h4>
+
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="mb-0"><i class="ri-product-hunt-line text-success align-middle font-18 mr-1"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Total Orders</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h4>@TempData["TotalOrders"]</h4>
+
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="mb-0"><i class="ri-product-hunt-line text-success align-middle font-18 mr-1"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-xl-4">
+        <div class="card m-b-30">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Total Sales</h5>
+            </div>
+            <div class="card-body pb-0">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h4>Rs @TempData["TotalSale"]</h4>
+
+                    </div>
+                    <div class="col-6 text-right">
+                        <p class="mb-0"><i class="ri-money-cny-box-fill text-success align-middle font-18 mr-1"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
